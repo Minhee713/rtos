@@ -1,3 +1,6 @@
+#include "ARMv7AR.h"
+#include "memoryMap.h"
+
 .text
  .code 32
 
@@ -24,13 +27,13 @@
  vector_end:
 
 reset_handler:
-  MPS r0, cpsr
+  MRS r0, cpsr
   BIC r1, r0, #0x1F
   ORR r1, r1, #ARM_MODE_BIT_SVC
   MSR cpsr, r1
   LDR sp, =SVC_STACK_TOP
 
-  MPS r0, cpsr
+  MRS r0, cpsr
   BIC r1, r0, #0x1F
   ORR r1, r1, #ARM_MODE_BIT_IRQ
   MSR cpsr, r1
